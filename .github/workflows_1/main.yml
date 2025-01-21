@@ -2,7 +2,7 @@ name: Sync to Hugging Face hub
 on:
   push:
     branches: [main]
-  workflow_dispatch: # Allows manual workflow runs
+  workflow_dispatch:
 
 jobs:
   sync-to-hub:
@@ -12,9 +12,7 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - name: Push to Hub
+      - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: |
-          git remote add hub https://${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Aditya923/Search_Engine_llm
-          git push hub main
+        run: git push https://Aditya923:$HF_TOKEN@huggingface.co/spaces/Aditya923/Search_Engine_llm main
